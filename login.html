@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f"><title>BKMS HOTSPOT</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<header class="topbar"><div class="brand"><div class="logo">B</div><div><h1>BKMS HOTSPOT</h1><p>Connexion Internet</p></div></div></header>
+<section class="hero"><span class="status"><i></i> RÉSEAU DISPONIBLE</span><h2>Bienvenue sur<br><b>BKMS HOTSPOT</b></h2><p>Entre ton code ou tes identifiants pour accéder à Internet.</p></section>
+
+<section class="card">
+<div class="tabs"><button class="tab active" type="button" onclick="mode('ticket')">🎫 Ticket</button><button class="tab" type="button" onclick="mode('account')">👤 Compte</button></div>
+<form action="$(link-login-only)" method="post" onsubmit="return validate()">
+<input type="hidden" name="dst" value="$(link-orig)">
+<input type="hidden" name="popup" value="true">
+<label for="user">Code / Identifiant</label>
+<input id="user" name="username" type="text" autocomplete="username" placeholder="Ex. BKMS-1234" required>
+<div id="passbox" class="hidden"><label for="pass">Mot de passe</label><input id="pass" name="password" type="password" autocomplete="current-password" placeholder="Mot de passe"></div>
+<div id="err" class="error hidden">Veuillez remplir les champs requis.</div>
+<button class="primary" type="submit">⚡ SE CONNECTER</button>
+</form>
+<p class="small">En te connectant, tu acceptes les conditions d'utilisation du réseau BKMS HOTSPOT.</p>
+</section>
+
+<h3 class="title">Forfaits</h3>
+<div class="plans">
+<div class="plan"><span>⚡</span><div><b>1 Heure</b><small>Connexion rapide</small></div><strong>200 FCFA</strong></div>
+<div class="plan"><span>🔥</span><div><b>3 Heures</b><small>Usage quotidien</small></div><strong>500 FCFA</strong></div>
+<div class="plan"><span>🌐</span><div><b>24 Heures</b><small>Journée complète</small></div><strong>1 000 FCFA</strong></div>
+<div class="plan"><span>🚀</span><div><b>7 Jours</b><small>Accès prolongé</small></div><strong>5 000 FCFA</strong></div>
+</div>
+<footer>BKMS HOTSPOT • Portail v2</footer>
+</main>
+<script>
+function mode(m){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));event.target.classList.add('active');document.getElementById('passbox').classList.toggle('hidden',m!=='account');document.getElementById('user').placeholder=m==='account'?'Ex. client01':'Ex. BKMS-1234';}
+function validate(){let u=document.getElementById('user').value.trim(),p=document.getElementById('pass').value; if(!u||(document.getElementById('passbox').className!== 'hidden'&&!p)){document.getElementById('err').classList.remove('hidden');return false}return true}
+</script>
+</body></html>
